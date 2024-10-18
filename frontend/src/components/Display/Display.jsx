@@ -4,9 +4,9 @@ import { StoreContext } from '../../Context/StoreContext';
 import ArtItem from '../Art_Item/ArtItem';
 
 const Display = ({ category }) => {
-    const { food_list } = useContext(StoreContext);
+    const { art_list } = useContext(StoreContext);
 
-    if (!food_list || food_list.length === 0) {
+    if (!art_list || art_list.length === 0) {
         return <div>No items available</div>; // Handle empty or undefined list
     }
 
@@ -14,10 +14,10 @@ const Display = ({ category }) => {
         <div className='display' id='display'>
             <h2>Top Artworks</h2>
             <div className="display-list">
-                {food_list.map((item, index) => {
+                {art_list.map((item, index) => {
                     if(category==="All" ||category===item.category)
                     {
-                        return <ArtItem key={index} id={item._id} name={item.name} description={item.description} price={item.price} image={item.image}/>
+                        return <ArtItem key={index} id={item._id} name={item.name} features={item.features} price={item.price} image={item.image}/>
                     }
                     
          })}
@@ -25,5 +25,5 @@ const Display = ({ category }) => {
         </div>
     );
 };
-
+ 
 export default Display;

@@ -54,7 +54,7 @@ const removeArt=async(req,res)=>{
 
         })
         await artModel.findByIdAndDelete(req.body.id);
-        res.json({success:true,message:"Food Removed"})
+        res.json({success:true,message:"Art Removed"})
         
     } catch (error) {
         console.log(error)

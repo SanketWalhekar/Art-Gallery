@@ -22,21 +22,4 @@ ArtRouter.post("/add",upload.single("image"),addArtItem)
 ArtRouter.get("/list",artlist)
 
 ArtRouter.post("/remove",removeArt);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 export default ArtRouter;

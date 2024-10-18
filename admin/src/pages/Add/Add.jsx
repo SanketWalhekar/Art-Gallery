@@ -5,8 +5,7 @@ import axios from 'axios'
 import { toast } from 'react-toastify'
 
 
-const Add = () => {
-    const url="http://localhost:4000";
+const Add = ({url}) => {
     const [image,setImage]=useState(false);
     const[data,setData]=useState({
         name:"",
@@ -30,24 +29,7 @@ const Add = () => {
         formData.append("price",Number(data.price))
         formData.append("category",data.category)
         formData.append("image",image)
-        try {
-            const response = await axios.post(`${url}/api/Art_data/add`, formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data' // Set content type to multipart/form-data
-                }
-            });
-            if (response.data.success) {
-                setData({
-                    name: "",
-                    features: "",
-                    category: "Sketch",
-                    price: ""
-                });
-                setImage(false);
-            }
-        } catch (error) {
-            console.error('Error adding the product:', error);
-        }
+        
 
         const response=await axios.post(`${url}/api/Art_data/add`,formData)
         if(response.data.success)

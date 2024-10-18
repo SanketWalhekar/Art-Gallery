@@ -119,7 +119,7 @@ export const menu_list = [
         menu_image: menu_7
     }]
 
-export const food_list = [
+export const art_list = [
     {
         _id: "1",
         name: "Krishna Sketch",
