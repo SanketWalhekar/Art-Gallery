@@ -1,14 +1,27 @@
-import React from 'react'
-import './navbar.css'
-import {assets} from '../../assets/assets';
+import React from 'react';
+import './navbar.css';
+import { assets } from '../../assets/assets';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
-  return (
-    <div className='navbar'>
-      <img className='logo' src={assets.Artlog01} alt="" />
-      <img className='profile' src={assets.profile_image} alt="" />
-    </div>
-  )
-}
+  const navigate = useNavigate();
 
-export default Navbar
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate('/login'); // Redirect to login page after logout
+  };
+
+  return (
+    <div className="navbar">
+      {/* Logo */}
+      <img className="logo" src={assets.Artlog01} alt="Art Gallery Logo" />
+
+      {/* Logout Button */}
+      <button className="logout-button" onClick={handleLogout}>
+        Logout
+      </button>
+    </div>
+  );
+};
+
+export default Navbar;

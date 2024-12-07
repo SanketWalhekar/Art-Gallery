@@ -1,36 +1,39 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 
-*{
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: Outfit;
+  font-family: 'Outfit', sans-serif;
+  scroll-behavior: smooth;
 
 }
 
-body{
+body {
   min-height: 100vh;
-  background-color: #fcfcfc;
+  width: 100%;
+  overflow-x: hidden; 
+
+  /* Prevents horizontal scrolling */
 }
-a{
+
+a {
   text-decoration: none;
   color: inherit;
 }
 
-hr{
-  border: none;
-  height: 1px;
-  background-color: #a9a9a9;
-}
-.app-content{
-  display: flex;
+.app,#root{
+  width: 100%; /* Ensures the app container spans full width */
+  max-width: 100%; /* No upper width limit */
 
 }
-.flex-col{
-  display:flex;
-  flex-direction: column;
-  gap:10px;
-}
-.cursor{
-  cursor: pointer;
+
+@keyframes fadeIn {
+  0%{
+    opacity:0;
+  }
+  100%
+  {
+    opacity:1;
+  }
 }

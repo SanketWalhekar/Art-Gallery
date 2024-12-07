@@ -1,0 +1,94 @@
+/* Login Form Container */
+#root {
+  /* Full viewport height to center vertically */
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center; /* Centers vertically */
+  background-color: #f5f5f5; /* Optional background color for better aesthetics */
+}
+.login-form-container {
+  /* max-width: 400px; */
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+  justify-content: center;
+  margin-left: 100px;
+}
+/* Title */
+.form-title {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #333333;
+  margin-bottom: 20px;
+}
+
+/* Form Styles */
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  font-size: 0.9rem;
+  color: #555555;
+  margin-bottom: 5px;
+  display: block;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+input:focus {
+  border-color: #4caf50; /* Same green focus color */
+}
+
+/* Buttons */
+.submit-button {
+  width: 100%;
+  background-color: #4caf50; /* Same green button color */
+  color: #ffffff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+}
+
+.submit-button:hover {
+  background-color: #8e44ad; /* Hover green shade */
+}
+
+/* Responsive Styles */
+@media (max-width: 480px) {
+  .login-form-container {
+    padding: 15px;
+  }
+
+  .form-title {
+    font-size: 1.5rem;
+  }
+
+  input {
+    font-size: 0.9rem;
+  }
+
+  .submit-button {
+    font-size: 0.95rem;
+  }
+}

@@ -1,0 +1,173 @@
+/* General Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f3f0ea; /* Soft beige background for an art gallery feel */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+/* Reset any margin or padding issues */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Container */
+.registration-form-container, .login-form-container {
+    background: #ffffff; /* White background for contrast */
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;  /* Adjust the max-width as per your design needs */
+    margin: 20px;
+    text-align: center;
+    position: relative;
+}
+
+/* Title */
+.form-title {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #333333;
+    font-weight: bold;
+    font-family: 'Playfair Display', serif; /* Artistic font */
+}
+
+/* Form Styles */
+.registration-form, .login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Reduced space between form elements */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    padding: 8px; /* Reduced padding for more compact fields */
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    outline: none;
+    transition: border 0.3s ease;
+}
+
+.form-group input:focus {
+    border: 1px solid #8e44ad; /* Artistic purple highlight */
+    box-shadow: 0 0 5px rgba(142, 68, 173, 0.5);
+}
+
+/* Buttons */
+.submit-button {
+    background-color: #8e44ad; /* Artistic purple button */
+    color: #ffffff;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #6d309c; /* Darker shade for hover */
+}
+
+.submit-button:active {
+    background-color: #4e2172; /* Active state color */
+}
+
+/* Login Link */
+.login-link p {
+    font-size: 0.9rem;
+    color: #666666;
+    margin-top: 10px;
+}
+
+.login-link a {
+    color: #8e44ad !important; /* Explicitly purple for the login link */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.login-link a:hover {
+    color: #6d309c !important; /* Darker purple for hover */
+}
+
+/* Styles for Login Page */
+.login-form-container {
+    background: #f5f5f5; /* Lighter background color for login */
+    padding: 30px;
+    max-width: 380px; /* Slightly smaller width for login */
+}
+
+.login-form-container .submit-button {
+    background-color: #3498db; /* Blue button for login */
+}
+
+.login-form-container .submit-button:hover {
+    background-color: #2980b9; /* Darker blue for hover */
+}
+
+.login-form-container .login-link p {
+    color: #999999;
+    margin-top: 20px;
+}
+
+.login-form-container .login-link a {
+    color: #3498db; /* Blue for login link */
+}
+
+.login-form-container .login-link a:hover {
+    color: #2980b9; /* Darker blue for hover */
+}
+
+/* Full Centering of Forms */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f3f0ea; /* Soft beige background */
+    flex-direction: column; /* Center content in a column */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .registration-form-container, .login-form-container {
+        width: 90%;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-title {
+        font-size: 1.5rem;
+    }
+
+    .form-group label {
+        font-size: 0.8rem;
+    }
+
+    .submit-button {
+        font-size: 0.9rem;
+    }
+}

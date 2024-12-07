@@ -6,6 +6,9 @@ import userRouter from "./routes/userRoute.js"
 import 'dotenv/config'
 import cartRouter from "./routes/cartRoute.js"
 import orderRouter from "./routes/orderRoute.js"
+import artistRouter from "./routes/artistRouter.js"
+import LoginRouter from "./routes/loginRouter.js"
+import RegisterRouter from "./routes/RegisterRoute.js"
 
 //App Config
 const app=express()
@@ -26,6 +29,11 @@ app.use("/images",express.static('uploads'))
 app.use("/api/user",userRouter)
 app.use("/api/cart",cartRouter)
 app.use("/api/order",orderRouter)
+app.use("/api/artists", artistRouter)
+app.use("/api/login",LoginRouter);
+app.use("/api/register",RegisterRouter);
+
+
 
 app.get("/",(req,res)=>{
     res.send("API working")
@@ -34,5 +42,3 @@ app.get("/",(req,res)=>{
 app.listen(port,()=>{
     console.log(`Server Started on http://localhost:${port}`)
 })
-
-//mongodb+srv://sanketwalhekar83:<db_password>@cluster0.sevwc.mongodb.net/?
