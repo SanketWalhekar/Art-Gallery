@@ -9,13 +9,15 @@ const loginArtist=async (req, res) => {
       .then((user) => {
         if (user) {
           if (user.password === password) {
+            console.log(user)
             // Generate JWT Token
             const token = jwt.sign(
               { id: user._id, email: user.email },
               process.env.JWT_SECRET || 'default_secret_key', // Use environment variable or fallback
               { expiresIn: '1h' }
             );
-            res.json({ success: true, message: 'Login successful', token });
+            const id=user._id;
+            res.json({ success: true, message: 'Login successful', token, id });
           } else {
             res.json({ success: false, message: 'Incorrect password' });
           }

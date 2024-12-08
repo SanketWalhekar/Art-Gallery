@@ -2,7 +2,9 @@ import jwt from'jsonwebtoken';
 
 import Artist from '../models/Artist.js';
 
+
 const RegisterArtist=async (req, res) => {
+  console.log(req.body)
     Artist.create(req.body)
       .then((employee) => res.json({ success: true, employee }))
       .catch((err) => {

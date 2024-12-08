@@ -11,6 +11,7 @@ const placeOrder =async(req,res)=>{
 
     try{
         const newOrder=new orderModel({
+            artistId:req.body.artistId,
             userId:req.body.userId,
             items:req.body.items,
             amount:req.body.amount,
@@ -103,7 +104,9 @@ const userOrders=async (req,res)=>{
 //Listing orders for admin panel
 const listOrders=async(req,res)=>{
 try{
-    const orders=await orderModel.find({});
+    const id=req.params.id;
+
+    const orders=await orderModel.find({artistId:id});
     res.json({success:true,data:orders})
 }
 catch(error)

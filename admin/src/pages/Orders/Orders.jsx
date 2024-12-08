@@ -9,8 +9,9 @@ import { assets } from '../../assets/assets';
 const Orders = ({url}) => {
   const [orders,setOrders]=useState([]);
 
+  const id1=localStorage.getItem("artistId");
   const fetchAllOrders=async()=>{
-    const response=await axios.get(url+"/api/order/list");
+    const response=await axios.get(url+"/api/order/list/"+`${id1}`);
     if(response.data.success)
     {
       setOrders(response.data.data);

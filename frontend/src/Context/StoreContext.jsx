@@ -6,25 +6,25 @@ import axios from 'axios'
 const StoreContextProvider=(props)=>{
 
     const [cartItems,setCartItems]=useState({});
+    const [itemCount, setItemCount] = useState(0);
     const url="http://localhost:4000"
     const [token,setToken]=useState("");
 
     const[art_list,setArtList]=useState([])
 
 
-
     const addToCart= async (itemId)=>{
-        if(!cartItems[itemId]){
+        if(!cartItems[itemId] && itemCount==0){
+            console.log(cartItems[itemId]);
             setCartItems((prev)=>({...prev,[itemId]:1}))
+            setItemCount(1);
+            if(token){
+                await axios.post(url+"/api/cart/add",{itemId},{headers:{token}})
+            }
 
         }
-        else
-        {
-            setCartItems((prev)=>({...prev,[itemId]:prev[itemId]+1}))
-        }
-        if(token){
-            await axios.post(url+"/api/cart/add",{itemId},{headers:{token}})
-        }
+       
+       
     }
 
     const removeFromCart= async (itemId)=>{
@@ -32,6 +32,7 @@ const StoreContextProvider=(props)=>{
         if(token)
         {
             await axios.post(url+"/api/cart/remove",{itemId},{headers:{token}})
+            setItemCount(0);
         }
     }
     

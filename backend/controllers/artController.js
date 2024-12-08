@@ -7,8 +7,10 @@ import fs from'fs'
 const addArtItem= async (req,res)=>{
 
     let image_filename=`${req.file.filename}`;
-
+    console.log(req.body);
     const art=new artModel({
+        
+        artist_id:req.body.id,
         name:req.body.name,
         features:req.body.features,
         price:req.body.price,
@@ -33,6 +35,23 @@ const addArtItem= async (req,res)=>{
 // All Art Item
 
 const artlist=async(req,res)=>{
+    const id=req.params.id;
+        console.log(req.params);
+
+    try{
+        const arts=await artModel.find({artist_id:id});
+        res.json({success:true,data:arts})
+
+    }catch(error){
+        console.log(error)
+        res.json({success:false,message:"Error"})
+
+    }
+
+}
+
+const artfetchlist=async(req,res)=>{
+    
 
     try{
         const arts=await artModel.find({});
@@ -64,4 +83,4 @@ const removeArt=async(req,res)=>{
     }
 
 }
-export {addArtItem,artlist,removeArt}
+export {addArtItem,artlist,removeArt,artfetchlist}

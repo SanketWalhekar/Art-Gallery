@@ -30,8 +30,11 @@ const PlaceOrder = () => {
   {
     event.preventDefault();
     let orderItems=[];
+    let Artistid='';
+
     art_list.map((item)=>{
       if(cartItems[item._id]>0){
+        Artistid=item.artist_id;
         let itemInfo=item;
         itemInfo["quantity"]=cartItems[item._id];
         orderItems.push(itemInfo);
@@ -43,6 +46,8 @@ const PlaceOrder = () => {
       address:data,
       items:orderItems,
       amount:getTotalCartAmount()+2,
+      artistId:Artistid
+      
     }
     let response=await axios.post(url+"/api/order/place",orderData,{headers:{token}});
     if(response.data.success)

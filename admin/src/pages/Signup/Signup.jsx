@@ -9,12 +9,17 @@ function Signup() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+     
+    
+      
     axios
-      .post('http://localhost:4000/api/register/register', { name, email, password })
+      .post('http://localhost:4000/api/register/register', {name, email, password })
       .then((result) => {
         console.log(result);
         toast.success('Registration Successful! Redirecting to login...');

@@ -1,6 +1,7 @@
 import mongoose from "mongoose"
 
 const orderSchema=new mongoose.Schema({
+    artistId:{type:String,required:true},
     userId:{type:String,required:true},
     items:{type:Array,required:true},
     amount:{type:Number,required:true},

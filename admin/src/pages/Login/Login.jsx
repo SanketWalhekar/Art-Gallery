@@ -18,12 +18,14 @@ const Login = () => {
       .post('http://localhost:4000/api/login/login', { email, password })
       .then((response) => {
         if (response.data.success) {
+          console.log(response.data)
           // Show success message
           toast.success('Login successful!', {
             position: 'top-right',
           });
           // Save token to local storage
           localStorage.setItem('token', response.data.token);
+          localStorage.setItem('artistId',response.data.id);
           // Redirect to home page
           setTimeout(() => navigate('/home'), 2000);
         } else {

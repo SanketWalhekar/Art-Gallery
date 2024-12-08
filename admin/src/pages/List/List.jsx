@@ -7,7 +7,8 @@ const List = ({url}) => {
   const [list,setList]=useState([]);
 
   const fetchList=async()=>{
-    const response=await axios.get(`${url}/api/Art_data/list`);
+    const artistId=localStorage.getItem("artistId");
+    const response=await axios.get(`${url}/api/Art_data/list/${artistId}`);
     if(response.data.success)
     {
       setList(response.data.data);

@@ -8,6 +8,7 @@ import { toast } from 'react-toastify'
 const Add = ({url}) => {
     const [image,setImage]=useState(false);
     const[data,setData]=useState({
+        id:"",
         name:"",
         features:"",
         category:"Sketch",
@@ -23,7 +24,11 @@ const Add = ({url}) => {
 
     const onSubmitHandler=async(event)=>{
         event.preventDefault();
+
+        const artist=localStorage.getItem('artistId');
+
         const formData=new FormData();
+        formData.append("id",artist)
         formData.append("name",data.name)
         formData.append("features",data.features)
         formData.append("price",Number(data.price))
@@ -31,10 +36,11 @@ const Add = ({url}) => {
         formData.append("image",image)
         
 
-        const response=await axios.post(`${url}/api/Art_data/add`,formData)
+        const response=await axios.post('http://localhost:4000/api/Art_data/add',formData)
         if(response.data.success)
         {
             setData({
+                id: artist,
                 name:"",
                 features:"",
                 category:"Sketch",
@@ -42,7 +48,6 @@ const Add = ({url}) => {
             })
             setImage(false)
             toast.success(response.data.message)
-
 
         }else{
             toast.error(response.data.message)

@@ -1,14 +1,30 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Outlet } from "react-router-dom";
 import "./Home.css";
 
 const Home = () => {
+  const url = "http://localhost:4000";
   const navigate = useNavigate();
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("id");
+
     navigate("/login");
   };
+
+  const handleAddArtworkClick = () => {
+  navigate("/home/add",{state:{url:url}}); 
+  };
+
+  const handleviewArtClick=()=>{
+  navigate("/home/list",{state:{url:url}}); 
+
+  }
+
+  const handleorderClick = () => {
+    navigate("/home/orders",{state:{url:url}}); 
+    };
 
   return (
     <div className="dashboard-container">
@@ -22,15 +38,15 @@ const Home = () => {
           <h1 className="sidebar-title">Artist Dashboard</h1>
         </div>
         <nav className="sidebar-menu">
-          <div className="menu-item">
+          <div className="menu-item" onClick={handleAddArtworkClick}>
             <img src="https://via.placeholder.com/30" alt="Add Artwork" />
             <p>Add Artwork</p>
           </div>
-          <div className="menu-item">
+          <div className="menu-item" onClick={handleviewArtClick}>
             <img src="https://via.placeholder.com/30" alt="View Artwork" />
             <p>View Artwork</p>
           </div>
-          <div className="menu-item">
+          <div className="menu-item" onClick={handleorderClick}>
             <img src="https://via.placeholder.com/30" alt="Orders" />
             <p>Orders</p>
           </div>
@@ -60,12 +76,8 @@ const Home = () => {
           </div>
         </section>
         <section className="dashboard-activities">
-          <h2>Recent Activities</h2>
-          <ul>
-            <li>New order placed for "Sunset Bliss".</li>
-            <li>Artwork "Ocean Wave" approved and published.</li>
-            <li>You earned $150 from "Abstract Art".</li>
-          </ul>
+          <h2>Dashboard Activities</h2>
+          <Outlet />
         </section>
       </div>
     </div>
