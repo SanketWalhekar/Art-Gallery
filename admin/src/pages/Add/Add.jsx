@@ -22,38 +22,41 @@ const Add = ({url}) => {
         setData(data=>({...data,[name]:value}))
     }
 
-    const onSubmitHandler=async(event)=>{
+    const onSubmitHandler = async (event) => {
         event.preventDefault();
-
-        const artist=localStorage.getItem('artistId');
-
-        const formData=new FormData();
-        formData.append("id",artist)
-        formData.append("name",data.name)
-        formData.append("features",data.features)
-        formData.append("price",Number(data.price))
-        formData.append("category",data.category)
-        formData.append("image",image)
-        
-
-        const response=await axios.post('http://localhost:4000/api/Art_data/add',formData)
-        if(response.data.success)
-        {
+      
+        try {
+          const artist = localStorage.getItem('artistId');
+      
+          const formData = new FormData();
+          formData.append("id", artist);
+          formData.append("name", data.name);
+          formData.append("features", data.features);
+          formData.append("price", Number(data.price));
+          formData.append("category", data.category);
+          formData.append("image", image);
+      
+          const response = await axios.post('http://localhost:4000/api/Art_data/add', formData);
+      
+          if (response.data?.success) {
             setData({
-                id: artist,
-                name:"",
-                features:"",
-                category:"Sketch",
-                price:""
-            })
-            setImage(false)
-            toast.success(response.data.message)
-
-        }else{
-            toast.error(response.data.message)
-
+              id: artist,
+              name: "",
+              features: "",
+              category: "Sketch",
+              price: ""
+            });
+            setImage(false);
+            toast.success(response.data.message);
+          } else {
+            toast.error(response.data.message);
+          }
+        } catch (error) {
+          console.error(error);
+          toast.error('An error occurred. Please try again.');
         }
-    }
+      };
+      
   return (
     <div className='add'>
         <form className="flex-col" onSubmit={onSubmitHandler}>

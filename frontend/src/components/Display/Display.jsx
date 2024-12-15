@@ -7,7 +7,7 @@ const Display = ({ category }) => {
     const { art_list } = useContext(StoreContext);
 
     if (!art_list || art_list.length === 0) {
-        return <div>No items available</div>; // Handle empty or undefined list
+        return <div>No items available</div>; 
     }
 
     return (

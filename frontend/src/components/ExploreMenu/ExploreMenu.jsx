@@ -20,7 +20,7 @@ const ExploreMenu = ({category,setCategory}) => {
                 <img 
                     className={category === item.menu_name ? "active" : ""} 
                     src={item.menu_image} 
-                    alt={item.menu_name} // added meaningful alt text
+                    alt={item.menu_name} 
                 />
                 <p>{item.menu_name}</p>
             </div>

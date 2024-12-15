@@ -2,21 +2,17 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import Artist from "../models/Artist.js";
 
-// Register Artist
 export const registerArtist = async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
-    // Check if email already exists
     const existingArtist = await Artist.findOne({ email });
     if (existingArtist) {
       return res.status(400).json({ success: false, message: "Email already registered" });
     }
 
-    // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Generate a unique ID for the artist
     const uniqueId = `ART-${Date.now()}`;
 
     // Create and save the artist

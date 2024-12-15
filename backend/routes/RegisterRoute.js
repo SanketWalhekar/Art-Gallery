@@ -1,8 +1,10 @@
-import express from "express"
-import { RegisterArtist } from "../controllers/RegisterController.js"
+import express from 'express';
+import { placeOrder, verifyOrder } from '../controllers/RegisterController.js';
 
-const RegisterRouter=express.Router();
+const RegisterRouter = express.Router();
 
-RegisterRouter.post("/register",RegisterArtist)
+RegisterRouter.post('/create-checkout-session',placeOrder );
+
+RegisterRouter.get('/payment-success', verifyOrder);
 
 export default RegisterRouter;

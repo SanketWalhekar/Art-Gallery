@@ -1,36 +1,50 @@
 import React, { useState } from 'react';
-import './Signup.css';
-import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import './Signup.css';
 
 function Signup() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [address, setAddress] = useState({
+    line1: '',
+    city: '',
+    state: '',
+    postalCode: '',
+    country: 'IN',
+  });
+  const [subscriptionType, setSubscriptionType] = useState('yearly');
 
+  const handlePayment = async () => {
+    try {
+      const response = await axios.post(
+        'http://localhost:4000/api/register/create-checkout-session',
+        {
+          name,
+          email,
+          password,
+          address,
+          subscriptionType,
+        }
+      );
 
-  const navigate = useNavigate();
+      // const { url } = response.data;
+      // window.location.href = url; // Redirect to Stripe Checkout
+
+      const {session_url}=response.data;
+      window.location.replace(session_url);
+      
+    } catch (error) {
+      console.error('Error creating payment session:', error);
+      toast.error('Error during payment. Please try again.');
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-     
-    
-      
-    axios
-      .post('http://localhost:4000/api/register/register', {name, email, password })
-      .then((result) => {
-        console.log(result);
-        toast.success('Registration Successful! Redirecting to login...');
-        setTimeout(() => {
-          navigate('/login');
-        }, 2000); // Redirect after 2 seconds
-      })
-      .catch((err) => {
-        console.log(err);
-        toast.error('Registration failed! Please try again.');
-      });
+    handlePayment();
   };
 
   return (
@@ -68,18 +82,48 @@ function Signup() {
           />
         </div>
         <div className="form-group">
+          <label htmlFor="address">Address</label>
+          <input
+            type="text"
+            placeholder="Address Line 1"
+            required
+            onChange={(e) => setAddress({ ...address, line1: e.target.value })}
+          />
+          <input
+            type="text"
+            placeholder="City"
+            required
+            onChange={(e) => setAddress({ ...address, city: e.target.value })}
+          />
+          <input
+            type="text"
+            placeholder="State"
+            required
+            onChange={(e) => setAddress({ ...address, state: e.target.value })}
+          />
+          <input
+            type="text"
+            placeholder="Postal Code"
+            required
+            onChange={(e) => setAddress({ ...address, postalCode: e.target.value })}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="subscription">Subscription Type</label>
+          <select
+            id="subscription"
+            onChange={(e) => setSubscriptionType(e.target.value)}
+          >
+            <option value="yearly">Yearly</option>
+            <option value="monthly">Monthly</option>
+          </select>
+        </div>
+        <div className="form-group">
           <button type="submit" className="submit-button">
-            Register
+            Pay & Register
           </button>
         </div>
       </form>
-      <div className="form-group">
-  <p>
-    Already have an account? <a href="/login">Login</a>
-  </p>
-</div>
-      
-
       <ToastContainer />
     </div>
   );
