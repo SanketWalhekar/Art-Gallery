@@ -1,173 +1,302 @@
-/* General Styles */
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Roboto', sans-serif;
-    background-color: #f3f0ea; /* Soft beige background for an art gallery feel */
+/* General container */
+.container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    box-sizing: border-box;
-}
-
-/* Reset any margin or padding issues */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Container */
-.registration-form-container, .login-form-container {
-    background: #ffffff; /* White background for contrast */
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
     padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 500px;  /* Adjust the max-width as per your design needs */
-    margin: 20px;
-    text-align: center;
-    position: relative;
-}
-
-/* Title */
-.form-title {
-    font-size: 2rem;
-    margin-bottom: 15px;
-    color: #333333;
-    font-weight: bold;
-    font-family: 'Playfair Display', serif; /* Artistic font */
-}
-
-/* Form Styles */
-.registration-form, .login-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px; /* Reduced space between form elements */
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-}
-
-.form-group label {
-    font-size: 0.9rem;
-    font-weight: bold;
-    color: #333333;
+    max-width: 1200px;
+    margin: auto;
+    background-color: #f9f9f9;
+    margin-top: 7px;
+  }
+  
+  .form-group1{
+    margin-bottom: 10px;
+  }
+  .form-group1 input {
     margin-bottom: 5px;
-}
+  }
 
-.form-group input {
-    padding: 8px; /* Reduced padding for more compact fields */
-    border: 1px solid #cccccc;
-    border-radius: 6px;
-    font-size: 1rem;
-    outline: none;
+
+  .choose {
+    margin-top: 45px;
+  }
+  
+  /* Registration Form Container */
+  .registration-form-container {
+    flex: 1;
+    min-width: 300px;
+    max-width: 48%;
+    background-color: #ffffff;
+    padding: 25px 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    
+  }
+  
+  .registration-form-container .form-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .registration-form-container .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .registration-form-container label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 5px;
+  }
+  
+  .registration-form-container input {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 14px;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
     transition: border 0.3s ease;
-}
-
-.form-group input:focus {
-    border: 1px solid #8e44ad; /* Artistic purple highlight */
-    box-shadow: 0 0 5px rgba(142, 68, 173, 0.5);
-}
-
-/* Buttons */
-.submit-button {
-    background-color: #8e44ad; /* Artistic purple button */
+  }
+  
+  .registration-form-container input:focus {
+    border: 1px solid #007bff;
+    outline: none;
+  }
+  
+  .registration-form-container .submit-button {
+    width: 100%;
+    padding: 12px 0;
+    font-size: 16px;
+    font-weight: bold;
     color: #ffffff;
-    padding: 10px;
+    background-color: #007bff;
     border: none;
-    border-radius: 6px;
-    font-size: 1rem;
+    border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-}
-
-.submit-button:hover {
-    background-color: #6d309c; /* Darker shade for hover */
-}
-
-.submit-button:active {
-    background-color: #4e2172; /* Active state color */
-}
-
-/* Login Link */
-.login-link p {
-    font-size: 0.9rem;
-    color: #666666;
-    margin-top: 10px;
-}
-
-.login-link a {
-    color: #8e44ad !important; /* Explicitly purple for the login link */
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease;
-}
-
-.login-link a:hover {
-    color: #6d309c !important; /* Darker purple for hover */
-}
-
-/* Styles for Login Page */
-.login-form-container {
-    background: #f5f5f5; /* Lighter background color for login */
-    padding: 30px;
-    max-width: 380px; /* Slightly smaller width for login */
-}
-
-.login-form-container .submit-button {
-    background-color: #3498db; /* Blue button for login */
-}
-
-.login-form-container .submit-button:hover {
-    background-color: #2980b9; /* Darker blue for hover */
-}
-
-.login-form-container .login-link p {
-    color: #999999;
-    margin-top: 20px;
-}
-
-.login-form-container .login-link a {
-    color: #3498db; /* Blue for login link */
-}
-
-.login-form-container .login-link a:hover {
-    color: #2980b9; /* Darker blue for hover */
-}
-
-/* Full Centering of Forms */
-body {
+  }
+  
+  .registration-form-container .submit-button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Subscription Cards Container */
+  .subscription-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #f3f0ea; /* Soft beige background */
-    flex-direction: column; /* Center content in a column */
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-    .registration-form-container, .login-form-container {
-        width: 90%;
-        padding: 20px;
+    justify-content: space-around;
+    margin-top: 30px;
+  }
+  
+  .pricing-cards {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+  }
+  
+  .card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    width: 250px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-left: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #333;
+    position: relative;
+    transition: transform 0.2s ease;
+  }
+  
+  .card h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+  }
+  
+  .card .starter_price,
+  .card .pro_price {
+    font-size: 24px;
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 15px;
+  }
+  
+  .card .starter_text,
+  .card .pro_text {
+    font-size: 14px;
+    margin-bottom: 15px;
+  }
+  
+  .card p {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+  
+  .card button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card.active {
+    border: 2px solid #007bff;
+    box-shadow: 0 10px 15px rgba(0, 123, 255, 0.3);
+  }
+  
+  .card.active h3 {
+    color: #007bff;
+  }
+  
+  .card.active .starter_price,
+  .card.active .pro_price {
+    color: #0056b3;
+  }
+  
+  .select p {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  /* Toggle Switch */
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 26px;
+  }
+  
+  .switch input {
+    display: none;
+  }
+  
+  .switch .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 26px;
+  }
+  
+  .switch .slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+  
+  .switch input:checked + .slider {
+    background-color: #4caf50;
+  }
+  
+  .switch input:checked + .slider:before {
+    transform: translateX(24px);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .container {
+      flex-direction: column;
+      gap: 20px;
     }
-}
-
-@media (max-width: 480px) {
+  
+    .registration-form-container,
+    .subscription-cards-container {
+      max-width: 100%;
+    }
+  
+    .card {
+      width: 220px; /* Adjust width for tablets */
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+      gap: 20px;
+      padding: 20px; /* Add padding for smaller screens */
+    }
+  
+    .registration-form-container {
+      max-width: 100%;
+      margin-bottom: 30px; /* Space between registration form and subscription cards */
+    }
+  
+    .subscription-container {
+      flex-direction: column;
+      gap: 15px;
+    }
+  
+    .pricing-cards {
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+    }
+  
+    .card {
+      width: 90%; /* Card takes full width in mobile view */
+      margin-left: 0;
+    }
+  
+    .card button {
+      width: 100%;
+      padding: 12px 0;
+    }
+  
+    .registration-form-container .form-group input {
+      font-size: 14px;
+    }
+  
     .form-title {
-        font-size: 1.5rem;
+      font-size: 20px; /* Smaller title for mobile */
     }
-
-    .form-group label {
-        font-size: 0.8rem;
+  }
+  
+  @media (max-width: 480px) {
+    .container {
+      padding: 15px;
     }
-
-    .submit-button {
-        font-size: 0.9rem;
+  
+    .card {
+      width: 100%; /* Full width for cards on very small screens */
+      padding: 15px;
     }
-}
+  
+    .registration-form-container {
+      padding: 15px;
+    }
+  
+    .pricing-cards {
+      gap: 15px;
+    }
+  
+    .select p {
+      font-size: 12px;
+    }
+  }
+  

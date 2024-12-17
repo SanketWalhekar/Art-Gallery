@@ -1,8 +1,10 @@
 import express from "express"
-import { loginArtist } from "../controllers/loginController.js"
+import { loginArtist,verifyOtp } from "../controllers/loginController.js"
 
 const LoginRouter=express.Router();
 
 LoginRouter.post("/login",loginArtist)
+
+LoginRouter.post("/verifyotp",verifyOtp)
 
 export default LoginRouter;

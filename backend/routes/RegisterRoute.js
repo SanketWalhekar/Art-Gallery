@@ -5,6 +5,8 @@ const RegisterRouter = express.Router();
 
 RegisterRouter.post('/create-checkout-session',placeOrder );
 
-RegisterRouter.get('/payment-success', verifyOrder);
+RegisterRouter.post('/payment-success', verifyOrder);
+
+
 
 export default RegisterRouter;

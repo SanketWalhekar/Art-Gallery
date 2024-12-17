@@ -26,6 +26,10 @@ const Home = () => {
     navigate("/home/orders",{state:{url:url}}); 
     };
 
+    const handleprofile = () => {
+      navigate("/home/profile",{state:{url:url}}); 
+      };
+
   return (
     <div className="dashboard-container">
       <aside className="sidebar">
@@ -38,6 +42,10 @@ const Home = () => {
           <h1 className="sidebar-title">Artist Dashboard</h1>
         </div>
         <nav className="sidebar-menu">
+        <div className="menu-item" onClick={handleprofile}>
+            <img src="https://via.placeholder.com/30" alt="Orders" />
+            <p>Profile</p>
+        </div>
           <div className="menu-item" onClick={handleAddArtworkClick}>
             <img src="https://via.placeholder.com/30" alt="Add Artwork" />
             <p>Add Artwork</p>
@@ -50,6 +58,7 @@ const Home = () => {
             <img src="https://via.placeholder.com/30" alt="Orders" />
             <p>Orders</p>
           </div>
+          
         </nav>
       </aside>
 

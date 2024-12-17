@@ -1,0 +1,21 @@
+.payment-success-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Ensures content is stacked vertically */
+    height: 100vh; /* Full viewport height */
+    text-align: center;
+    background-color: #f5f5f5; /* Light gray background for contrast */
+  }
+  
+  .payment-success-container h1 {
+    font-size: 2rem; /* Large heading size */
+    color: #333; /* Dark gray text */
+    margin-bottom: 20px; /* Spacing below the heading */
+  }
+  
+  .payment-success-container p {
+    font-size: 1.2rem; /* Slightly larger text for paragraph */
+    color: #555; /* Medium gray text for better readability */
+  }
+  

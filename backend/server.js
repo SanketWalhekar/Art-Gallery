@@ -9,6 +9,8 @@ import orderRouter from "./routes/orderRoute.js"
 import artistRouter from "./routes/artistRouter.js"
 import LoginRouter from "./routes/loginRouter.js"
 import RegisterRouter from "./routes/RegisterRoute.js"
+import authrouter from "./routes/authRoutes.js"
+import profilerouter from './routes/profileroute.js'
 
 //App Config
 const app=express()
@@ -32,6 +34,12 @@ app.use("/api/order",orderRouter)
 app.use("/api/artists", artistRouter)
 app.use("/api/login",LoginRouter);
 app.use("/api/register",RegisterRouter);
+app.use("/api/auth",authrouter);
+app.use("/api/artist",profilerouter);
+
+
+
+
 
 
 

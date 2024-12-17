@@ -1,6 +1,7 @@
 import orderModel from "../models/orderModel.js";
 import userModel from "../models/userModel.js";
 import Stripe from 'stripe';
+import { sendEmail } from "./Common.js";
 
 const stripe=new Stripe(process.env.STRIPE_SECRET_KEY)
 
@@ -107,7 +108,11 @@ try{
     const id=req.params.id;
 
     const orders=await orderModel.find({artistId:id});
-    res.json({success:true,data:orders})
+    
+    const paidData = orders.filter(item => item.payment === true);
+    // console.log(paidData);
+    
+    res.json({success:true,data:paidData})
 }
 catch(error)
 {
@@ -120,11 +125,26 @@ catch(error)
 const updateStatus = async (req,res)=>
 {
     try{
+        const email=req.body.email;
+        console.log(email);
+        
         await orderModel.findByIdAndUpdate(req.body.orderId,{status:req.body.status})
+        const mailOptions = {
+            from: "fw19if002@gmail.com",
+            to: email,
+            subject: "Sketch Order Status ",
+            text: `I hope this email finds you well.We are writing to update you regarding the status of your order: 
+            Order Number: ${req.body.orderId}
+            Current Status: ${req.body.status}
+            Should you have any questions or need further assistance, please feel free to reach out. We are here to help!
+            Thank you for choosing Art Gallery.
+            
+            Best regards,
+            Art Gallery`
+        };
+        
+        sendEmail(mailOptions);
         res.json({success:true,message:"Status Upadted"})
-
-
-
     }
     catch(error)
     {

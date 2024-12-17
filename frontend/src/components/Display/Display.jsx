@@ -25,5 +25,4 @@ const Display = ({ category }) => {
         </div>
     );
 };
- 
 export default Display;

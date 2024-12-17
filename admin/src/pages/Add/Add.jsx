@@ -4,7 +4,6 @@ import { assets } from '../../assets/assets'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 
-
 const Add = ({url}) => {
     const [image,setImage]=useState(false);
     const[data,setData]=useState({
@@ -14,7 +13,7 @@ const Add = ({url}) => {
         category:"Sketch",
         price:""
     })
-
+    
     const onChangeHandler=(event)=>
     {
         const name=event.target.name;
@@ -27,7 +26,6 @@ const Add = ({url}) => {
       
         try {
           const artist = localStorage.getItem('artistId');
-      
           const formData = new FormData();
           formData.append("id", artist);
           formData.append("name", data.name);
@@ -99,5 +97,4 @@ const Add = ({url}) => {
     </div>
   )
 }
-
 export default Add
