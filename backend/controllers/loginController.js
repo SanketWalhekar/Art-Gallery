@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 import crypto from 'crypto';
 import Artist from '../models/Artist.js';
 import {sendEmail} from '../controllers/Common.js';
-
+import moment from "moment/moment.js";
 
 
 function generateOTP() {
@@ -26,6 +26,10 @@ const loginArtist=async (req, res) => {
             const id=user._id;
             const isActive=user.isActive;
             let isAuth=false;
+            
+            const currentTimestamp = moment().valueOf();
+            const planExpiry=moment(user.subscriptionExpiry).valueOf()>=currentTimestamp?false:true;
+            
               const otp = generateOTP();
               const otpExpiry = new Date(Date.now() + 10 * 60 * 1000)
               // Send OTP via email
@@ -58,7 +62,7 @@ const loginArtist=async (req, res) => {
                 res.json({success:false,message: 'sent OTP failed'});
               }
              
-              res.json({ success: true, message: 'Login successful', token, id, isActive, isAuth });
+              res.json({ success: true, message: 'Login successful', token, id, isActive, isAuth, planExpiry });
           } else {
             res.json({ success: false, message: 'Incorrect password' });
           }

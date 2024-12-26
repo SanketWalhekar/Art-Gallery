@@ -2,13 +2,13 @@ import orderModel from "../models/orderModel.js";
 import userModel from "../models/userModel.js";
 import Stripe from 'stripe';
 import { sendEmail } from "./Common.js";
+import Artist from "../models/Artist.js";
 
 const stripe=new Stripe(process.env.STRIPE_SECRET_KEY)
 
-//Placing user order for frontend
 const placeOrder =async(req,res)=>{
 
-    const frontend_url="http://localhost:5173";
+    const frontend_url="http://localhost:5174";
 
     try{
         const newOrder=new orderModel({
@@ -62,32 +62,50 @@ const placeOrder =async(req,res)=>{
 }
 
 const verifyOrder=async(req,res)=>
-{
-    const{orderId,success}=req.body;
-    try{
-        if(success=="true")
-        {
-            await orderModel.findByIdAndUpdate(orderId,{payment:true});
-            res.json({success:true,message:"Paid"})
-
-
-        }
-        else{
-            await orderModel.findByIdAndDelete(orderId);
-            res.json({success:false,message:"Not Paid"})
-        }
-       
-    }
-    catch(error)
     {
-        console.log(error);
-        res.json({success:false,message:"Error"})
-        
+        const{orderId,success}=req.body;
+        try{
+            if(success=="true")
+            {
+                const order=await orderModel.findByIdAndUpdate(orderId,{payment:true});
+                const artistId=order.artistId;
+                const artist=await Artist.findById(artistId);
+                
+                const mailOptions = {
+                    from: "fw19if002@gmail.com",
+                    to: artist.email,
+                    subject: "New Sketch Order Recieved",
+                    text: `I hope this email finds you well.We are writing to update you regarding  of your new sketch order: 
+                    Order Number: ${req.body.orderId}
+                    Should you have any questions or need further assistance, please feel free to reach out. We are here to help!
+                    Thank you for choosing Art Gallery.
+                    
+                    Best regards,
+                    Art Gallery`
+                };
+                
+                sendEmail(mailOptions);
+    
+                res.json({success:true,message:"Paid"})
+                console.log("Error Sent Successfully")
+    
+    
+            }
+            else{
+                await orderModel.findByIdAndDelete(orderId);
+                res.json({success:false,message:"Not Paid"})
+            }
+           
+        }
+        catch(error)
+        {
+            console.log(error);
+            res.json({success:false,message:"Error"})
+            
+        }
+    
     }
 
-}
-
-// users orders for frontend
 
 const userOrders=async (req,res)=>{
     try{
@@ -105,14 +123,15 @@ const userOrders=async (req,res)=>{
 //Listing orders for admin panel
 const listOrders=async(req,res)=>{
 try{
+
     const id=req.params.id;
 
     const orders=await orderModel.find({artistId:id});
     
     const paidData = orders.filter(item => item.payment === true);
-    // console.log(paidData);
     
     res.json({success:true,data:paidData})
+
 }
 catch(error)
 {
@@ -121,7 +140,6 @@ catch(error)
 }
 }
 
-//api for upadting order status
 const updateStatus = async (req,res)=>
 {
     try{
@@ -138,7 +156,7 @@ const updateStatus = async (req,res)=>
             Current Status: ${req.body.status}
             Should you have any questions or need further assistance, please feel free to reach out. We are here to help!
             Thank you for choosing Art Gallery.
-            
+
             Best regards,
             Art Gallery`
         };
@@ -154,5 +172,4 @@ const updateStatus = async (req,res)=>
     }
 
 }
-
 export {placeOrder,verifyOrder,userOrders,listOrders,updateStatus};

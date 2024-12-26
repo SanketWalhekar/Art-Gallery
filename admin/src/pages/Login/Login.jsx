@@ -10,6 +10,8 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [verify,setVerify]=useState(0);
   const [otp, setOtp] = useState('');
+  
+
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -29,6 +31,7 @@ const Login = () => {
           localStorage.setItem('artistId',response.data.id);
           localStorage.setItem('email',email);
           localStorage.setItem('isAuth',response.data.isAuth);
+          localStorage.setItem('planexpiry',response.data.planExpiry);
           
           
           // sentOTP
@@ -57,7 +60,7 @@ const Login = () => {
     axios
       .post('http://localhost:4000/api/login/verifyotp', data)
       .then((response) => {
-        // Log the full response for debugging
+        
         console.log(response);
         localStorage.setItem("isAuth",response.data.isAuth);
         // Check if the response indicates success

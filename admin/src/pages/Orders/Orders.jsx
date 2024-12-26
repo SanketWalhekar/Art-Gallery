@@ -148,7 +148,7 @@ const Orders = ({url}) => {
             <h4>Shipping Address:</h4>
             <p>
               {selectedOrder.address.street},<br />
-              {selectedOrder.address.city}, {selectedOrder.address.zip}
+              {selectedOrder.address.city+", "+selectedOrder.address.state+", "+selectedOrder.address.country+", "+selectedOrder.address.zipcode}
             </p>
           </div>
 

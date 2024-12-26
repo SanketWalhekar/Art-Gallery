@@ -1,5 +1,6 @@
 import Stripe from 'stripe';
 import Artist from '../models/Artist.js';
+import moment from "moment/moment.js"
 
 const stripe=new Stripe("sk_test_51O1TiuSIYdbve5xsumxp8fSNL3SDSFBb2HUKyCkmIjsiwDjBLVNo7Sabphd0N5n6RfbjcRAXXsSPNTUSrGhb9Kl700lE4hvDkG")
 
@@ -13,10 +14,21 @@ const placeOrder =async(req,res)=>{
     try{
     const amount = subscriptionType === 'yearly' ? 50000 : 5000;
 
+    const currentTimestamp = moment();
+    const expirydate = subscriptionType === 'yearly' ? currentTimestamp.clone().add(365, 'days') : currentTimestamp.clone().add(30, 'days');
+  
+
     const isExistArtist = await Artist.findOne({ email });
 
+    const currentTimestampp = moment().valueOf();
+    let planExpiry=null;
+
+    if(isExistArtist!=null){
+        planExpiry=moment(isExistArtist.subscriptionExpiry).valueOf()>=currentTimestampp?false:true
+    }
+
    
-    if (isExistArtist && isExistArtist.isActive) {
+    if (isExistArtist && (isExistArtist.isActive && planExpiry)) {
         return res.json({ success: false, message: "Already Exist" });
     }
 
@@ -29,6 +41,7 @@ const placeOrder =async(req,res)=>{
         customerAddress: address,
         subscriptionPlan: subscriptionType,
         isActive: false,
+        subscriptionExpiry: expirydate
       });
       await newOrder.save();
     }
@@ -50,7 +63,7 @@ const placeOrder =async(req,res)=>{
     const session = await stripe.checkout.sessions.create({
       line_items,
       mode: 'payment',
-      success_url: `http://localhost:5173/payment-success?success=true&email=${email}`,
+      success_url:`http://localhost:5173/payment-success?success=true&email=${email}`,
       cancel_url: `http://localhost:5173/`,
     });
 
@@ -76,7 +89,6 @@ const verifyOrder=async(req,res)=>
     try{
         if(success=="true")
         {
-            
             const updateData={isActive:true};
             await Artist.findOneAndUpdate({ email: email }, updateData, { isActive: true });
             res.json({success:true,message:"Paid"})
@@ -95,4 +107,6 @@ const verifyOrder=async(req,res)=>
     }
 
 }
+
+
 export {placeOrder,verifyOrder}

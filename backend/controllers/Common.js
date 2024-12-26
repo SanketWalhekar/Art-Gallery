@@ -8,7 +8,6 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-
 export const sendEmail=(mailOptions)=>{
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {

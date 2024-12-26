@@ -1,15 +1,18 @@
 import React from "react";
 import { useNavigate, Outlet } from "react-router-dom";
 import "./Home.css";
+import axios from 'axios';
 
 const Home = () => {
   const url = "http://localhost:4000";
   const navigate = useNavigate();
 
+  const expiry=localStorage.getItem("planexpiry");
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("id");
-
+    localStorage.clear();
     navigate("/login");
   };
 
@@ -29,6 +32,11 @@ const Home = () => {
     const handleprofile = () => {
       navigate("/home/profile",{state:{url:url}}); 
       };
+
+    const handlerenew = () => {
+      navigate("/home/renew",{state:{url:url}}); 
+    };
+
 
   return (
     <div className="dashboard-container">
@@ -58,6 +66,12 @@ const Home = () => {
             <img src="https://via.placeholder.com/30" alt="Orders" />
             <p>Orders</p>
           </div>
+          {expiry=="true" && (
+          <div className="menu-item" onClick={handlerenew}>
+            <img src="https://via.placeholder.com/30" alt="Renew" />
+            <p>Renew</p>
+          </div>
+        )}
           
         </nav>
       </aside>
@@ -70,6 +84,12 @@ const Home = () => {
             Logout
           </button>
         </header>
+        {expiry=="true" ? (
+        <div style={{ color: 'red', fontSize: '20px' }}>
+          Your subscription has expired. Please renew to continue. 
+        </div>
+      ) : (<div></div>
+      )}
         <section className="dashboard-stats">
           <div className="stat-card">
             <h3>Total Artworks</h3>

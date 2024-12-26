@@ -27,9 +27,10 @@ const artistSchema = new mongoose.Schema(
       postalCode: { type: String, required: true },
       country: { type: String, default: 'IN', required: true },
     },
-    isActive: { type: Boolean, default: false }, // Account Status
+    isActive: { type: Boolean, default: false }, 
     otp: { type: String, required: false,  }, // OTP for validation
     otpExpiry: { type: Date, }, // OTP expiry time
+    subscriptionExpiry: {type: Date, default:null}
   },
   { timestamps: true } // Automatically add createdAt and updatedAt fields
 );

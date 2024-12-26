@@ -10,9 +10,6 @@ import Verify from './pages/Verify/Verify'
 import MyOrders from './pages/MyOrders/MyOrders'
 import Artwork from './pages/artwork/artwork'
 
-
-
-
 const App = () => {
   const[showLogin,setShowLogin]=useState(false)
   return (

@@ -19,12 +19,30 @@ const PaymentSuccess = () => {
       console.log(response.data);
       console.log(response);
 
+      const token=localStorage.getItem('token');
+      
+
       if (response.data.success) {
-        toast.success('Payment verified successfully!', { position: 'top-right' });
-        setTimeout(() => navigate('/login'), 5000); // Redirect after 3 seconds
+        if(token){
+          toast.success('Payment verified successfully!', { position: 'top-right' });
+          localStorage.setItem('planexpiry', false);
+          setTimeout(() => navigate('/home'), 2000); // Redirect after 3 seconds
+        }
+        else{
+          toast.success('Payment verified successfully!', { position: 'top-right' });
+          setTimeout(() => navigate('/login'), 5000); // Redirect after 3 seconds
+        }
+        
       } else {
-        toast.error('Payment verification failed.', { position: 'top-right' });
-        setTimeout(() => navigate('/'), 5000); // Redirect after 3 seconds
+        if(token){
+          toast.error('Payment verified Failed!', { position: 'top-right' });
+          setTimeout(() => navigate('/home'), 2000); // Redirect after 3 seconds
+        }
+        else{
+          toast.error('Payment verification failed.', { position: 'top-right' });
+          setTimeout(() => navigate('/'), 5000); // Redirect after 3 seconds
+        }
+        
       }
     } catch (error) {
       console.error(error);

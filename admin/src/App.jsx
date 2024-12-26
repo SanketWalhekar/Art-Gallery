@@ -8,6 +8,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
 import Home from './pages/Home/Home';
+import Renew from './pages/Renew/Renew';
+
 import ProtectedRoute from './components/ProtectedRoute';
 import Add from './pages/Add/Add';
 import Profile from './pages/Profile/Profile';
@@ -35,6 +37,9 @@ const App = () => {
 
 
 
+
+      
+
         {/* Public Routes */}
         <Route path="/register" element={
           <Elements stripe={stripePromise}>
@@ -57,6 +62,11 @@ const App = () => {
           <Route path="list" element={<List url={url} />} />
           <Route path="orders" element={<Orders url={url} />} />
           <Route path="profile" element={<Profile url={url} />} />
+          <Route path="renew" element={
+            <Elements stripe={stripePromise}>
+              <Renew/>
+            </Elements>}
+          />
 
         </Route>
 
