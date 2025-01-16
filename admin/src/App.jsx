@@ -35,11 +35,6 @@ const App = () => {
       <Route path="/forgot" element={<ForgotPassword />} />
       <Route path="/reset-password" element={<ResetPassword/>} />
 
-
-
-
-      
-
         {/* Public Routes */}
         <Route path="/register" element={
           <Elements stripe={stripePromise}>

@@ -1,7 +1,5 @@
 import userModel from "../models/userModel.js"
 
-
-// add items to user cart
 const addToCart = async (req, res) => {
     try {
         console.log("Request Body:", req.body);
@@ -34,7 +32,6 @@ const removeFromCart=async(req,res)=>{
         if(cartData[req.body.itemId]>0)
         {
             cartData[req.body.itemId]-=1;
-
         }
         await userModel.findByIdAndUpdate(req.body.userId,{cartData});
         res.json({success:true,message:"Removed From Cart"});

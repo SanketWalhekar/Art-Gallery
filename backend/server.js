@@ -11,8 +11,12 @@ import LoginRouter from "./routes/loginRouter.js"
 import RegisterRouter from "./routes/RegisterRoute.js"
 import authrouter from "./routes/authRoutes.js"
 import profilerouter from './routes/profileroute.js'
+import OwnerRouter from './routes/OwnerRoute.js'
+import ownerOrder from "./routes/ownerOrder.js"
+import ownerArtist from "./routes/ownerArtist.js"
 
-//App Config
+
+
 const app=express()
 const port=4000
 
@@ -36,6 +40,14 @@ app.use("/api/login",LoginRouter);
 app.use("/api/register",RegisterRouter);
 app.use("/api/auth",authrouter);
 app.use("/api/artist",profilerouter);
+app.use("/api/owner",OwnerRouter);
+app.use("/api/ownerorder",ownerOrder);
+app.use("/api/ownerartist",ownerArtist);
+
+
+
+
+
 
 
 

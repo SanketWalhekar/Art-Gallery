@@ -2,9 +2,8 @@ import Stripe from 'stripe';
 import Artist from '../models/Artist.js';
 import moment from "moment/moment.js"
 
-const stripe=new Stripe("sk_test_51O1TiuSIYdbve5xsumxp8fSNL3SDSFBb2HUKyCkmIjsiwDjBLVNo7Sabphd0N5n6RfbjcRAXXsSPNTUSrGhb9Kl700lE4hvDkG")
+const stripe=new Stripe(process.env.STRIPE_SECRET_KEY);
 
-//Placing user order for frontend
 const placeOrder =async(req,res)=>{
 
     const frontend_url="http://localhost:5173";
@@ -27,13 +26,30 @@ const placeOrder =async(req,res)=>{
         planExpiry=moment(isExistArtist.subscriptionExpiry).valueOf()>=currentTimestampp?false:true
     }
 
+   console.log(planExpiry);
+   console.log(isExistArtist);
    
-    if (isExistArtist && (isExistArtist.isActive && planExpiry)) {
+    if (isExistArtist && (isExistArtist.isActive && !planExpiry)) {
         return res.json({ success: false, message: "Already Exist" });
     }
 
-
-    if (!isExistArtist) {
+    
+    if (isExistArtist!=null) {
+      await Artist.findOneAndUpdate(
+        { email: email }, 
+        {
+          $set: {
+            name,
+            password,
+            customerAddress: address,
+            subscriptionPlan: subscriptionType,
+            isActive: true,
+            subscriptionExpiry: expirydate,
+          },
+        }
+      );
+    }
+    else if(isExistArtist==null) {
       const newOrder = new Artist({
         name,
         email,
@@ -45,7 +61,6 @@ const placeOrder =async(req,res)=>{
       });
       await newOrder.save();
     }
-
    
     const line_items = [
       {
@@ -63,7 +78,7 @@ const placeOrder =async(req,res)=>{
     const session = await stripe.checkout.sessions.create({
       line_items,
       mode: 'payment',
-      success_url:`http://localhost:5173/payment-success?success=true&email=${email}`,
+      success_url: 'http://localhost:5173/payment-success?success=true&email=${email}',
       cancel_url: `http://localhost:5173/`,
     });
 
@@ -107,6 +122,4 @@ const verifyOrder=async(req,res)=>
     }
 
 }
-
-
 export {placeOrder,verifyOrder}

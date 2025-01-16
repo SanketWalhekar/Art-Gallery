@@ -7,17 +7,17 @@ const Home = () => {
   const url = "http://localhost:4000";
   const navigate = useNavigate();
 
-  const expiry=localStorage.getItem("planexpiry");
+//   const expiry=localStorage.getItem("planexpiry");
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    localStorage.removeItem("id");
+    // localStorage.removeItem("id");
     localStorage.clear();
     navigate("/login");
   };
 
-  const handleAddArtworkClick = () => {
-  navigate("/home/add",{state:{url:url}}); 
+  const handleArtistClick = () => {
+  navigate("/home/artist",{state:{url:url}}); 
   };
 
   const handleviewArtClick=()=>{
@@ -26,16 +26,20 @@ const Home = () => {
   }
 
   const handleorderClick = () => {
-    navigate("/home/orders",{state:{url:url}}); 
+    navigate("/home/order",{state:{url:url}}); 
+    };
+
+    const handleUserClick =()=>{
+        navigate("/home/user",{state:{url:url}}); 
     };
 
     const handleprofile = () => {
       navigate("/home/profile",{state:{url:url}}); 
       };
 
-    const handlerenew = () => {
-      navigate("/home/renew",{state:{url:url}}); 
-    };
+    // const handlerenew = () => {
+    //   navigate("/home/renew",{state:{url:url}}); 
+    // };
 
 
   return (
@@ -47,18 +51,18 @@ const Home = () => {
             alt="Artist Logo"
             className="sidebar-logo-img"
           />
-          <h1 className="sidebar-title">Artist Dashboard</h1>
+          <h1 className="sidebar-title">Admin Dashboard</h1>
         </div>
         <nav className="sidebar-menu">
-        {expiry=="false" ? (
-        <>
-        <div className="menu-item" onClick={handleprofile}>
-            <img src="https://via.placeholder.com/30" alt="Orders" />
-            <p>Profile</p>
-        </div>
-          <div className="menu-item" onClick={handleAddArtworkClick}>
+        
+          <div className="menu-item" onClick={handleArtistClick}>
             <img src="https://via.placeholder.com/30" alt="Add Artwork" />
-            <p>Add Artwork</p>
+            <p>Artist</p>
+          </div>
+
+          <div className="menu-item" onClick={handleUserClick}>
+            <img src="https://via.placeholder.com/30" alt="Add Artwork" />
+            <p>Users</p>
           </div>
           <div className="menu-item" onClick={handleviewArtClick}>
             <img src="https://via.placeholder.com/30" alt="View Artwork" />
@@ -68,13 +72,9 @@ const Home = () => {
             <img src="https://via.placeholder.com/30" alt="Orders" />
             <p>Orders</p>
           </div>
-          </>):(
-          <div className="menu-item" onClick={handlerenew}>
-            <img src="https://via.placeholder.com/30" alt="Renew" />
-            <p>Renew</p>
-          </div>
           
-        )}
+          
+        
           
         </nav>
       </aside>
@@ -82,17 +82,13 @@ const Home = () => {
       {/* Main Dashboard */}
       <div className="dashboard-content">
         <header className="dashboard-header">
-          <h2>Welcome, Artist!</h2>
+          <h2>Welcome, Admin!</h2>
           <button className="logout-button" onClick={handleLogout}>
             Logout
           </button>
         </header>
-        {expiry=="true" ? (
-        <div style={{ color: 'red', fontSize: '20px' }}>
-          Your subscription has expired. Please renew to continue. 
-        </div>
-      ) : (<div></div>
-      )}
+        
+      
         <section className="dashboard-stats">
           <div className="stat-card">
             <h3>Total Artworks</h3>

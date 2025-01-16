@@ -1,0 +1,197 @@
+/* Artist.css */
+
+/* Global Styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+/* Artist Table Styles */
+.artist-table {
+  width: 100%;
+  max-width: 1200px;
+  margin: 20px auto;
+  border-collapse: collapse;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.artist-table th,
+.artist-table td {
+  text-align: left; /* Align content to the left */
+  padding: 10px 15px;
+  border: 1px solid #ddd; /* Add borders for cleaner separation */
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.artist-table th {
+  background-color: #007bff; /* Blue background for headers */
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+.artist-table td {
+  background-color: #f9f9f9; /* Light background for rows */
+}
+
+/* Alternating Row Colors */
+.artist-table tr:nth-child(even) td {
+  background-color: #f1f1f1; /* Slightly darker background for even rows */
+}
+
+/* Hover Effect for Rows */
+.artist-table tr:hover td {
+  background-color: #e6f7ff; /* Light blue highlight on hover */
+  cursor: pointer; /* Pointer cursor for better interaction */
+}
+
+/* Table Borders */
+.artist-table th:first-child,
+.artist-table td:first-child {
+  border-left: none; /* Remove border on the left side of the table */
+}
+
+.artist-table th:last-child,
+.artist-table td:last-child {
+  border-right: none; /* Remove border on the right side of the table */
+}
+
+/* Profile Picture Styling */
+.artist-table img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Responsive Design */
+
+
+
+
+
+/* Modal Styles */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #fff;
+  width: 90%;
+  max-width: 700px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  position: relative;
+  text-align: left;
+  overflow-y: auto;
+  max-height: 90vh;
+}
+
+/* Modal Close Button */
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #ff4d4d;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.close-button:hover {
+  background: #e60000;
+}
+
+/* Modal Heading */
+.modal-content h3 {
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  color: #333;
+  text-align: center;
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+}
+
+/* Artworks Section in Modal */
+.artworks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.artwork-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.artwork-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.artwork-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-bottom: 1px solid #ddd;
+}
+
+.artwork-card p {
+  margin: 10px 0;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.artwork-card p strong {
+  color: #333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .artist-table-header,
+  .artist-table-row {
+      grid-template-columns: 1fr 1.5fr 1.5fr 1fr 1fr 1fr;
+      font-size: 0.8rem;
+  }
+
+  .modal-content {
+      width: 95%;
+      max-height: 85vh;
+  }
+
+  .artworks-grid {
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+}
