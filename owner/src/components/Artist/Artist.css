@@ -1,197 +1,222 @@
-/* Artist.css */
-
-/* Global Styles */
-body {
-  font-family: 'Roboto', sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f8f9fa;
-  color: #333;
-}
-
-/* Artist Table Styles */
-.artist-table {
-  width: 100%;
-  max-width: 1200px;
+/* Artist Page Container */
+.artist {
   margin: 20px auto;
-  border-collapse: collapse;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+  padding: 20px;
+  max-width: 1200px;
+  background: #e5edfa;
+  border: 1px solid #00050a;
+  border-radius: 15px;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+  font-family: "Arial", sans-serif;
 }
 
-.artist-table th,
-.artist-table td {
-  text-align: left; /* Align content to the left */
-  padding: 10px 15px;
-  border: 1px solid #ddd; /* Add borders for cleaner separation */
-  font-size: 0.9rem;
-  color: #333;
-}
-
-.artist-table th {
-  background-color: #007bff; /* Blue background for headers */
-  color: white;
+/* Artist Page Text */
+.artist p {
+  text-align: center;
+  font-size: 26px;
   font-weight: bold;
-  font-size: 1rem;
-  text-transform: uppercase;
+  color: #2c3e50;
+  margin-bottom: 20px;
 }
 
-.artist-table td {
-  background-color: #f9f9f9; /* Light background for rows */
+/* Artist Table */
+.artist-table {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+  overflow-x: auto;
 }
 
-/* Alternating Row Colors */
-.artist-table tr:nth-child(even) td {
-  background-color: #f1f1f1; /* Slightly darker background for even rows */
+.artist-table-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  font-weight: bold;
+  background: #8e44ad; /* Updated background color */
+  color: #00080a; /* Updated text color */
+  border-radius: 10px;
+  font-size: 14px;
 }
 
-/* Hover Effect for Rows */
-.artist-table tr:hover td {
-  background-color: #e6f7ff; /* Light blue highlight on hover */
-  cursor: pointer; /* Pointer cursor for better interaction */
+.artist-table-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px; /* Reduced padding */
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Table Borders */
-.artist-table th:first-child,
-.artist-table td:first-child {
-  border-left: none; /* Remove border on the left side of the table */
+.artist-table-row:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
+  background: #ecf0f1;
 }
 
-.artist-table th:last-child,
-.artist-table td:last-child {
-  border-right: none; /* Remove border on the right side of the table */
+.artist-table-row p {
+  margin: 0;
+  font-size: 14px;
+  color: #34495e;
 }
 
-/* Profile Picture Styling */
-.artist-table img {
-  width: 40px;
-  height: 40px;
+.artist-profile-picture {
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   object-fit: cover;
+  border: 2px solid #3498db;
 }
 
-/* Responsive Design */
-
-
-
-
-
-/* Modal Styles */
+/* Modal Styling */
 .modal {
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centering the modal */
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 9999;
 }
 
 .modal-content {
-  background: #fff;
-  width: 90%;
+  background: white;
+  width: 80%;
   max-width: 700px;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  position: relative;
-  text-align: left;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+  text-align: center;
   overflow-y: auto;
-  max-height: 90vh;
+  max-height: 90%;
+  font-family: "Arial", sans-serif;
+  position: relative; /* Added for positioning close button inside the modal */
 }
 
-/* Modal Close Button */
+.modal-content h3 {
+  margin-top: 0;
+  font-size: 22px;
+  color: #2c3e50;
+}
+
+.modal-content p {
+  margin: 10px 0;
+  font-size: 16px;
+  color: #34495e;
+}
+
+/* Close Button */
 .close-button {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  background: #ff4d4d;
-  border: none;
+  top: 15px;
+  right: 15px;
+  background: #e74c3c;
   color: white;
-  font-size: 1.2rem;
-  cursor: pointer;
+  border: none;
   border-radius: 50%;
-  width: 30px;
-  height: 30px;
+  font-size: 18px;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: background 0.2s ease;
 }
 
 .close-button:hover {
-  background: #e60000;
+  background: #c0392b;
 }
 
-/* Modal Heading */
-.modal-content h3 {
-  margin-bottom: 15px;
-  font-size: 1.5rem;
-  color: #333;
-  text-align: center;
-  font-weight: bold;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 10px;
-}
-
-/* Artworks Section in Modal */
+/* Artworks Grid */
 .artworks-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
   margin-top: 20px;
 }
 
 .artwork-card {
-  background: #fff;
+  background: white;
   border: 1px solid #ddd;
-  border-radius: 8px;
-  overflow: hidden;
+  border-radius: 10px;
+  padding: 15px;
   text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .artwork-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  transform: translateY(-3px);
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
 }
 
 .artwork-image {
   width: 100%;
   height: 150px;
   object-fit: cover;
-  border-bottom: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 10px;
 }
 
 .artwork-card p {
-  margin: 10px 0;
-  font-size: 0.9rem;
-  color: #555;
+  margin: 5px 0;
+  font-size: 14px;
+  color: #34495e;
 }
 
-.artwork-card p strong {
-  color: #333;
-}
-
-/* Responsive Design */
+/* Responsive Styling */
 @media (max-width: 768px) {
-  .artist-table-header,
+  .artist-table-header {
+    font-size: 12px;
+    padding: 10px;
+  }
+
   .artist-table-row {
-      grid-template-columns: 1fr 1.5fr 1.5fr 1fr 1fr 1fr;
-      font-size: 0.8rem;
+    font-size: 12px;
+    padding: 10px;
   }
 
   .modal-content {
-      width: 95%;
-      max-height: 85vh;
+    width: 90%;
+    padding: 20px;
   }
 
   .artworks-grid {
-      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+
+  .artwork-image {
+    height: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .artist-table-header {
+    font-size: 10px;
+    padding: 8px;
+  }
+
+  .artist-table-row {
+    font-size: 10px;
+    padding: 8px;
+  }
+
+  .modal-content {
+    width: 95%;
+    padding: 15px;
+  }
+
+  .artworks-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .artwork-image {
+    height: 100px;
   }
 }

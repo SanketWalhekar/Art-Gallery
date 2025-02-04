@@ -9,7 +9,6 @@ const Artist = ({ url }) => {
   const [artworks, setArtworks] = useState([]);
   const [showModal, setShowModal] = useState(false);
 
-  // Fetch all artists from the backend
   const fetchArtists = async () => {
     try {
       const response = await axios.get(`${url}/api/owner/fetch`);
@@ -61,7 +60,6 @@ const Artist = ({ url }) => {
           <div key={index} className="artist-table-row" onClick={() => fetchArtistDetails(artist._id)}>
             <img
               src={artist.profilePicture ? `${url}/images/` + artist.profilePicture : '/default-profile.png'}
-              alt="Profile"
               className="artist-profile-picture"
             />
             <p>{artist.name}</p>

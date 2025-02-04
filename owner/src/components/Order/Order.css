@@ -1,187 +1,164 @@
-/* Orders Page Container */
+/* Order Page Container */
 .orders-container {
-    margin: 20px auto;
-    padding: 20px;
-    max-width: 1200px;
-    background: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .orders-container h2 {
-    text-align: center;
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 20px;
-  }
-  
-  /* Orders Table */
-  .orders-table {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
-  
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 1200px;
+  background: #e5edfa;
+  border: 1px solid #00050a;
+  border-radius: 15px;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+  font-family: "Arial", sans-serif;
+}
+
+/* Order Page Text */
+.orders-container h2 {
+  text-align: center;
+  font-size: 26px;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+/* Orders Table */
+.orders-table {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+  overflow-x: auto;
+}
+
+.orders-table-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  font-weight: bold;
+  background: #fcfcfc;
+  color: #00080a;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.orders-table-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.orders-table-row:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
+  background: #ecf0f1;
+}
+
+.orders-table-row p {
+  margin: 0;
+  font-size: 14px;
+  color: #34495e;
+}
+
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centering the modal */
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Ensuring modal content is centered */
+  z-index: 9999;
+}
+
+.modal-content {
+  background: white;
+  width: 80%;
+  max-width: 700px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+  text-align: left; /* Align text to the left */
+  overflow-y: auto;
+  max-height: 400px; /* Set a smaller height */
+  font-family: "Arial", sans-serif;
+  position: relative;
+}
+
+.modal-content h3 {
+  margin-top: 0;
+  font-size: 22px;
+  color: #2c3e50;
+}
+
+.modal-content p {
+  margin: 10px 0;
+  font-size: 16px;
+  color: #34495e;
+}
+
+/* Close Button */
+.close-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 18px;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background 0.2s ease;
+}
+
+.close-button:hover {
+  background: #c0392b;
+}
+
+
+
+/* Responsive Styling */
+@media (max-width: 768px) {
   .orders-table-header {
-    display: flex;
-    justify-content: space-between;
+    font-size: 12px;
     padding: 10px;
-    font-weight: bold;
-    background: #007bff;
-    color: white;
-    border-radius: 5px;
   }
-  
+
   .orders-table-row {
-    display: flex;
-    justify-content: space-between;
+    font-size: 12px;
     padding: 10px;
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.2s ease;
   }
-  
-  .orders-table-row:hover {
-    background: #f1f1f1;
-  }
-  
-  .orders-table-row p {
-    margin: 0;
-    font-size: 14px;
-    color: #333;
-  }
-  
-  /* No Orders Found */
-  .no-orders {
-    text-align: center;
-    color: #999;
-    font-size: 16px;
-    margin-top: 20px;
-  }
-  
-  /* Modal Styling */
-  .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-  }
-  
+
   .modal-content {
-    background: white;
-    width: 80%;
-    max-width: 600px;
+    width: 90%;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: left;
-    overflow-y: auto;
-    max-height: 90%;
-    font-family: "Arial", sans-serif;
   }
-  
-  .modal-content h3 {
-    margin-top: 0;
-    font-size: 20px;
-    color: #333;
+}
+
+@media (max-width: 480px) {
+  .orders-table-header {
+    font-size: 10px;
+    padding: 8px;
   }
-  
-  .modal-content h4 {
-    font-size: 18px;
-    color: #555;
-    margin-bottom: 10px;
+
+  .orders-table-row {
+    font-size: 10px;
+    padding: 8px;
   }
-  
-  .modal-content p {
-    margin: 5px 0;
-    font-size: 14px;
-    color: #333;
+
+  .modal-content {
+    width: 95%;
+    padding: 15px;
   }
-  
-  .modal-content ul {
-    padding-left: 20px;
-    margin: 10px 0;
-  }
-  
-  .modal-content ul li {
-    margin-bottom: 5px;
-    font-size: 14px;
-    color: #555;
-  }
-  
-  .modal-content pre {
-    background: #f4f4f4;
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 13px;
-    color: #555;
-  }
-  
-  /* Close Button */
-  .close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: #ff4d4d;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    font-size: 16px;
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .close-button:hover {
-    background: #ff3333;
-  }
-  
-  /* Invoice Section */
-  .modal-content .invoice-section {
-    margin-top: 20px;
-    padding: 10px;
-    background: #f7f7f7;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
-  
-  .invoice-section p {
-    margin: 5px 0;
-    font-size: 14px;
-    font-weight: bold;
-  }
-  
-  .invoice-section .items {
-    margin-top: 10px;
-  }
-  
-  .items ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .items ul li {
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid #ddd;
-    padding: 5px 0;
-  }
-  
-  .items ul li span {
-    font-size: 14px;
-    color: #555;
-  }
-  
-  
+}

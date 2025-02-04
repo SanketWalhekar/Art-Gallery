@@ -1,81 +1,83 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, Outlet } from "react-router-dom";
 import "./Home.css";
-import axios from 'axios';
+import axios from "axios";
+import { assets } from '../../assets/assets'
+
 
 const Home = () => {
   const url = "http://localhost:4000";
   const navigate = useNavigate();
+  const [artist, setArtist] = useState(null);
+  const [error, setError] = useState("");
 
-  const expiry=localStorage.getItem("planexpiry");
+  const expiry = localStorage.getItem("planexpiry");
+  const artistId = localStorage.getItem("artistId");
+
+  useEffect(() => {
+    // Fetch artist details
+    const fetchArtist = async () => {
+      try {
+        const { data } = await axios.get(`http://localhost:4000/api/artist/info/${artistId}`);
+        setArtist(data); // ✅ Store artist data in state
+      } catch (err) {
+        setError("Error fetching artist data");
+      }
+    };
+
+    if (artistId) {
+      fetchArtist();
+    } else {
+      setError("Artist ID not found in localStorage");
+    }
+  }, [artistId]);
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("id");
     localStorage.clear();
     navigate("/login");
   };
-
-  const handleAddArtworkClick = () => {
-  navigate("/home/add",{state:{url:url}}); 
-  };
-
-  const handleviewArtClick=()=>{
-  navigate("/home/list",{state:{url:url}}); 
-
-  }
-
-  const handleorderClick = () => {
-    navigate("/home/orders",{state:{url:url}}); 
-    };
-
-    const handleprofile = () => {
-      navigate("/home/profile",{state:{url:url}}); 
-      };
-
-    const handlerenew = () => {
-      navigate("/home/renew",{state:{url:url}}); 
-    };
-
 
   return (
     <div className="dashboard-container">
       <aside className="sidebar">
         <div className="sidebar-logo">
           <img
-            src="https://via.placeholder.com/150"
-            alt="Artist Logo"
+            src={
+              artist?.profilePicture
+                ? `http://localhost:4000/images/${artist.profilePicture}`
+                : "https://via.placeholder.com/150"
+            }
+            alt="Artist Profile"
             className="sidebar-logo-img"
           />
           <h1 className="sidebar-title">Artist Dashboard</h1>
         </div>
         <nav className="sidebar-menu">
-        {expiry=="false" ? (
-        <>
-        <div className="menu-item" onClick={handleprofile}>
-            <img src="https://via.placeholder.com/30" alt="Orders" />
-            <p>Profile</p>
-        </div>
-          <div className="menu-item" onClick={handleAddArtworkClick}>
-            <img src="https://via.placeholder.com/30" alt="Add Artwork" />
-            <p>Add Artwork</p>
-          </div>
-          <div className="menu-item" onClick={handleviewArtClick}>
-            <img src="https://via.placeholder.com/30" alt="View Artwork" />
-            <p>View Artwork</p>
-          </div>
-          <div className="menu-item" onClick={handleorderClick}>
-            <img src="https://via.placeholder.com/30" alt="Orders" />
-            <p>Orders</p>
-          </div>
-          </>):(
-          <div className="menu-item" onClick={handlerenew}>
-            <img src="https://via.placeholder.com/30" alt="Renew" />
-            <p>Renew</p>
-          </div>
-          
-        )}
-          
+          {expiry === "false" ? (
+            <>
+              <div className="menu-item" onClick={() => navigate("/home/profile", { state: { url } })}>
+                <img src={assets.profile} alt="Profile" />
+                <p>Profile</p>
+              </div>
+              <div className="menu-item" onClick={() => navigate("/home/add", { state: { url } })}>
+                <img src={assets.paint} alt="Add Artwork" />
+                <p>Add Artwork</p>
+              </div>
+              <div className="menu-item" onClick={() => navigate("/home/list", { state: { url } })}>
+                <img src={assets.search} alt="View Artwork" />
+                <p>View Artwork</p>
+              </div>
+              <div className="menu-item" onClick={() => navigate("/home/orders", { state: { url } })}>
+                <img src={assets.shipping} alt="Orders" />
+                <p>Orders</p>
+              </div>
+            </>
+          ) : (
+            <div className="menu-item" onClick={() => navigate("/home/renew", { state: { url } })}>
+              <img src="https://via.placeholder.com/30" alt="Renew" />
+              <p>Renew</p>
+            </div>
+          )}
         </nav>
       </aside>
 
@@ -87,12 +89,11 @@ const Home = () => {
             Logout
           </button>
         </header>
-        {expiry=="true" ? (
-        <div style={{ color: 'red', fontSize: '20px' }}>
-          Your subscription has expired. Please renew to continue. 
-        </div>
-      ) : (<div></div>
-      )}
+        {expiry === "true" && (
+          <div style={{ color: "red", fontSize: "20px" }}>
+            Your subscription has expired. Please renew to continue.
+          </div>
+        )}
         <section className="dashboard-stats">
           <div className="stat-card">
             <h3>Total Artworks</h3>
